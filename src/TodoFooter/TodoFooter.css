@@ -1,0 +1,16 @@
+.todo-footer {
+  margin-top: 10px;
+  color: #999;
+}
+
+.todo-footer button {
+  border-color: rgb(216, 216, 216);
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.todo-footer button.active {
+  border-color: rgba(175, 47, 47, 0.35);
+}
