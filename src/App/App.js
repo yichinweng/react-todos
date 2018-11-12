@@ -44,26 +44,36 @@ class App extends Component {
     const item = {
       text: this.state.newTodo,
       done: false,
-      id: this.state.newTodoId + 1,
+      id: this.state.newTodoId,
     }
     const todos = [...this.state.todos, item];
-    this.setState({ todos, newTodo: '' });
+    this.setState((state) => {
+      return { todos, newTodo: '', newTodoId: state.newTodoId + 1}
+    });
   }
   handleChange = (event) => {
     this.setState({ newTodo: event.target.value })
   }
-  handleCheck = (e, index) => {
+  handleCheck = (e, id) => {
     const todos = [...this.state.todos];
-    todos[index].done = e.target.checked;
+    todos.map(el => {
+      if (el.id === id) {
+        return el.done = e.target.checked;
+      }
+    })
     this.setState({ todos });
   }
-  handleDelete = (e, index) => {
-    const todos = [...this.state.todos];
-    todos.splice(index, 1);
+  handleDelete = (e, id) => {
+    const todos = [...this.state.todos].filter(el => el.id !== id);
     this.setState({ todos });
   }
   handleFilterClicked = (t) => {
     this.setState({filter: t});
+  }
+  handleClearClicked = () => {
+    const todos = [...this.state.todos];
+    const updateTodos = todos.filter(el => el.done === false);
+    this.setState({ todos: updateTodos });
   }
   render() {
     return (
@@ -86,7 +96,8 @@ class App extends Component {
           <TodoFooter
             todos={this.state.todos}
             filter={this.state.filter}
-            onFilterClick={(t) => this.handleFilterClicked(t)} /> : ''
+            onFilterClick={(t) => this.handleFilterClicked(t)}
+            onClearClick={this.handleClearClicked} /> : ''
         }
       </div>
     );

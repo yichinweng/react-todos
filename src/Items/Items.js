@@ -2,29 +2,29 @@ import React, { Component } from 'react';
 import './Items.css';
 
 class Items extends Component {
-  renderItems(val) {
-    let index = val.id;
-    const text = this.props.todos[index].text;
-    const done = this.props.todos[index].done;
+  renderItems(el) {
+    let id = el.id;
+    const text = el.text;
+    const done = el.done;
     return (
       <div
         className={done ? 'items done' : 'items'}
-        key={index}
+        key={id}
       >
         <input
           className="checkbox"
           type="checkbox"
-          key={index}
-          id={`item${index}`}
+          key={id}
+          id={`item${id}`}
           checked={done ? true : false}
-          onChange={(e) => this.props.onChecked(e, index)} />
-        <label htmlFor={`item${index}`}>
+          onChange={(e) => this.props.onChecked(e, id)} />
+        <label htmlFor={`item${id}`}>
           {text}
         </label>
         <span
           role="button"
           className="delete"
-          onClick={(e) => this.props.onDelete(e, index)}>
+          onClick={(e) => this.props.onDelete(e, id)}>
           &times;
         </span>
       </div>
@@ -42,7 +42,7 @@ class Items extends Component {
   render() {
     return (
       <div>
-        {this.getFilterTodos().map((val) => this.renderItems(val))}
+        {this.getFilterTodos().map(el => this.renderItems(el))}
       </div>
     );
   }

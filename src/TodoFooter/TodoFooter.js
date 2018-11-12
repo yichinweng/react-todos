@@ -17,7 +17,7 @@ class TodoFooter extends Component {
     return (
       <div className="todo-footer">
         {buttonList.map((el, index) => this.renderButton(el, index))}
-        <button>Clear Done</button>
+        <button onClick={this.props.onClearClick}>Clear Done</button>
         <p>
           {`${this.props.todos.filter(val => val.done === true).length}/${this.props.todos.length}`}
         </p>
