@@ -19,10 +19,13 @@
   margin-left: -34px;
   margin-top: 6px;
 }
+.items label {
+  cursor: pointer;
+}
 .items .delete {
   font-weight: bold;
   line-height: 12px;
-  color: rgba(175, 47, 47, 0.35);
+  color: red;
   position: absolute;
   z-index: 1;
   top: 4px;

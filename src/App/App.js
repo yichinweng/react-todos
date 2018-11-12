@@ -12,15 +12,18 @@ class App extends Component {
     this.state = {
       todos: [
         {
+          id: 0,
           text: '買沐浴乳',
           done: false,
         },
         {
+          id: 1,
           text: '買水果',
           done: false,
         },
       ],
       newTodo: '',
+      newTodoId: 2,
       filter: 'All',
     }
   }
@@ -41,6 +44,7 @@ class App extends Component {
     const item = {
       text: this.state.newTodo,
       done: false,
+      id: this.state.newTodoId + 1,
     }
     const todos = [...this.state.todos, item];
     this.setState({ todos, newTodo: '' });
